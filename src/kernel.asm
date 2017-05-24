@@ -7,9 +7,11 @@
 %define GDT_IDX_CS_K_DESC 0x40
 %define GDT_OFF_DS_K_DESC 0x48
 %define GDT_OFF_VIDEO_DESC 0x60
+
 extern GDT_DESC
-extern paint
-; PREGUNTAR SI SE PUEDE ACCEDER DESDE C
+extern IDT_DESC
+extern print_int
+extern idt_inicializar
 
 global start
 
@@ -86,27 +88,7 @@ BITS 32
     imprimir_texto_mp iniciando_mp_msg, iniciando_mp_len, 0x07, 2, 0
 
     ; Inicializar pantalla
-
-    mov word [fs:0], 0x0700
-
-    mov ebx, 80
-    .cicloCol:
-      mov eax, 50
-      .cicloFil:
-
-        imprimir_texto_mp 65, 1, 0x8 << 4 | 0x2 << 4 | 0x1, eax, ebx
-
-        dec eax
-        cmp eax, 0
-        jge .cicloFil
-
-      dec ebx
-      cmp ebx, 0
-      jge .cicloCol
-
-
-    ;mov edi, 0xb8000
-    ;call paint
+    call llenar_verde
 
     ; Inicializar el manejador de memoria
 
@@ -123,7 +105,9 @@ BITS 32
     ; Inicializar el scheduler
 
     ; Inicializar la IDT
-
+    call idt_inicializar
+    lidt [IDT_DESC]
+    int 0x01
     ; Cargar IDT
 
     ; Configurar controlador de interrupciones
@@ -145,3 +129,4 @@ BITS 32
 ;; -------------------------------------------------------------------------- ;;
 
 %include "a20.asm"
+%include "screen.asm"

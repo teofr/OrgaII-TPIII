@@ -50,17 +50,3 @@ void print_int(unsigned int n, unsigned int x, unsigned int y, unsigned short at
     p[y][x].c = '0'+n;
     p[y][x].a = attr;
 }
-
-
-void paint(ca* init){
-
-  ca co;
-  co.c=' ';
-  co.a=C_BG_GREEN;
-  int i;
-
-  for(i=0; i<80*50; i++){
-    init[i]=co;
-  }
-
-}

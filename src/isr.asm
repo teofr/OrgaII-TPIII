@@ -6,10 +6,13 @@
 
 %include "imprimir.mac"
 
+
 BITS 32
 
 sched_tarea_offset:     dd 0x00
 sched_tarea_selector:   dw 0x00
+;;Print
+extern print_int
 
 ;; PIC
 extern fin_intr_pic1
@@ -23,9 +26,15 @@ extern sched_proximo_indice
 
 %macro ISR 1
 global _isr%1
+;void print_int(unsigned int n, unsigned int x, unsigned int y, unsigned short attr);
 
 _isr%1:
     mov eax, %1
+    push 0x10
+    push 0
+    push 0
+    push %1
+    call print_int
     jmp $
 
 %endmacro
@@ -41,7 +50,7 @@ isrClock:            db '|/-\'
 ;; Rutina de atención de las EXCEPCIONES
 ;; -------------------------------------------------------------------------- ;;
 ISR 0
-
+ISR 1
 ;;
 ;; Rutina de atención del RELOJ
 ;; -------------------------------------------------------------------------- ;;
@@ -75,5 +84,3 @@ proximo_reloj:
                 imprimir_texto_mp ebx, 1, 0x0f, 49, 79
                 popad
         ret
-        
-        

@@ -43,7 +43,7 @@ gdt_entry gdt[GDT_COUNT] = {
         (unsigned char)     0x01,           /* g            */
         (unsigned char)     0x00,           /* base[31:24]  */
     },
-    [GDT_IDX_DS_K_DESC] = (gdt_entry) { //TODO: preguntar por expand-down
+    [GDT_IDX_DS_K_DESC] = (gdt_entry) {
         (unsigned short)    0x6EFF,         /* limit[0:15]  */
         (unsigned short)    0x0000,         /* base[0:15]   */
         (unsigned char)     0x00,           /* base[23:16]  */
@@ -58,7 +58,7 @@ gdt_entry gdt[GDT_COUNT] = {
         (unsigned char)     0x01,           /* g            */
         (unsigned char)     0x00,           /* base[31:24]  */
     },
-    [GDT_IDX_CS_U_DESC] = (gdt_entry) { //TODO: ver que onda conforming
+    [GDT_IDX_CS_U_DESC] = (gdt_entry) {
         (unsigned short)    0x6EFF,         /* limit[0:15]  */
         (unsigned short)    0x0000,         /* base[0:15]   */
         (unsigned char)     0x00,           /* base[23:16]  */
@@ -89,10 +89,10 @@ gdt_entry gdt[GDT_COUNT] = {
         (unsigned char)     0x00,           /* base[31:24]  */
     },
     [GDT_IDX_VIDEO_DESC] = (gdt_entry) {
-        (unsigned short)    0x1F3E,         /* limit[0:15]  */
+        (unsigned short)    0x1F3F,         /* limit[0:15]  */
         (unsigned short)    0x8000,         /* base[0:15]   */
         (unsigned char)     0x0B,           /* base[23:16]  */
-        (unsigned char)     0x02,           /* type  se cargan los bits codigo=0 expand-down=1 w=1 accesed=0 */
+        (unsigned char)     0x02,           /* type  se cargan los bits codigo=0 expand-down=0 w=1 accesed=0 */
         (unsigned char)     0x01,           /* s            */
         (unsigned char)     0x00,           /* dpl          */
         (unsigned char)     0x01,           /* p            */
