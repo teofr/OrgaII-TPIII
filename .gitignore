@@ -1,1 +1,10 @@
 *.o
+*.bin
+*.tmp
+*.ctsko
+*.sym
+*.ctsk
+*.tsko
+*.img
+*.txt
+
