@@ -4,14 +4,17 @@
 ; ==============================================================================
 
 %include "imprimir.mac"
-%define GDT_IDX_CS_K_DESC 0x40
+%define GDT_OFF_CS_K_DESC 0x40
 %define GDT_OFF_DS_K_DESC 0x48
 %define GDT_OFF_VIDEO_DESC 0x60
+%define PAG_DIR_ADDR 0x27000
 
 extern GDT_DESC
 extern IDT_DESC
 extern print_int
 extern idt_inicializar
+extern init_board
+extern pag_init
 
 global start
 
@@ -61,7 +64,7 @@ start:
     mov cr0, eax
     ; Saltar a modo protegido
 
-    jmp GDT_IDX_CS_K_DESC:modoprotegido
+    jmp GDT_OFF_CS_K_DESC:modoprotegido
 
 BITS 32
     modoprotegido:
@@ -93,10 +96,15 @@ BITS 32
     ; Inicializar el manejador de memoria
 
     ; Inicializar el directorio de paginas
+    call pag_init
 
     ; Cargar directorio de paginas
-
+    mov eax, PAG_DIR_ADDR
+    mov cr3, eax
     ; Habilitar paginacion
+    mov eax, cr0
+    or eax, 0x80000001
+    mov cr0, eax
 
     ; Inicializar tss
 
@@ -107,7 +115,8 @@ BITS 32
     ; Inicializar la IDT
     call idt_inicializar
     lidt [IDT_DESC]
-    int 0x01
+
+    call init_board
     ; Cargar IDT
 
     ; Configurar controlador de interrupciones
@@ -123,6 +132,7 @@ BITS 32
     mov ebx, 0xFFFF
     mov ecx, 0xFFFF
     mov edx, 0xFFFF
+
     jmp $
     jmp $
 
