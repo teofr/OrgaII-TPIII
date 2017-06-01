@@ -14,12 +14,12 @@ DEPEND = Makefile \
 	imprimir.mac \
 	defines.h \
 	gdt.c gdt.h pic.c pic.h idt.c idt.h isr.h tss.c tss.h mmu.c mmu.h \
-	paginacion.c paginacion.h \
+	paginacion.c paginacion.h rutinasc.c rutinasc.h\
 	sched.c sched.h screen.c screen.h \
 	game.c game.h syscall.h
 
 OBJ=$(KERNEL_OBJ) gdt.o pic.o idt.o isr.o mmu.o sched.o tss.o screen.o game.o \
-									paginacion.o
+									paginacion.o rutinasc.o
 DISK_IMG=diskette.img
 DISK_IMG_BZ=diskette.img.bz2
 

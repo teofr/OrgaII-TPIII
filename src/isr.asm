@@ -20,6 +20,7 @@ extern fin_intr_pic1
 ;; Sched
 extern sched_proximo_indice
 
+extern isr0
 ;;
 ;; Definición de MACROS
 ;; -------------------------------------------------------------------------- ;;
@@ -34,7 +35,7 @@ _isr%1:
     push 20
     push 20
     push %1
-    call print_int
+    call isr0
     jmp $
 
 %endmacro
@@ -49,6 +50,7 @@ isrClock:            db '|/-\'
 ;;
 ;; Rutina de atención de las EXCEPCIONES
 ;; -------------------------------------------------------------------------- ;;
+
 ISR 0
 ISR 1
 ISR 2

@@ -8,6 +8,8 @@
 #ifndef __ISR_H__
 #define __ISR_H__
 
+#include "rutinasc.h"
+
 void _isr0();
 void _isr1();
 void _isr2();
@@ -28,5 +30,8 @@ void _isr16();
 void _isr17();
 void _isr18();
 void _isr19();
+
+extern void isr0();
+
 
 #endif  /* !__ISR_H__ */

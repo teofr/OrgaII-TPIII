@@ -117,6 +117,8 @@ BITS 32
     lidt [IDT_DESC]
 
     call init_board
+    
+    int 0x00
     ; Cargar IDT
 
     ; Configurar controlador de interrupciones
