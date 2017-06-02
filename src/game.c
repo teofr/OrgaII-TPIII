@@ -12,3 +12,14 @@ void game_lanzar_zombi(unsigned int jugador) {
 }
 void game_move_current_zombi(direccion dir) {
 }
+
+
+
+unsigned int pos2mem(unsigned int x, unsigned int y){
+  return (y*78 + x)<<12;
+}
+
+void mem2pos(unsigned int mem, unsigned int *x, unsigned int *y){
+  *x=(mem>>12)%78;
+  *y=(mem>>12)/78;
+}

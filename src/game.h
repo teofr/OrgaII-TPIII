@@ -19,5 +19,9 @@ void game_lanzar_zombi(unsigned int jugador);
 
 void game_move_current_zombi(direccion dir);
 
+unsigned int pos2mem(unsigned int x, unsigned int y);
+
+void mem2pos(unsigned int mem, unsigned int *x, unsigned int *y);
+
 
 #endif  /* !__GAME_H__ */

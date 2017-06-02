@@ -114,12 +114,12 @@ BITS 32
 
     ; Inicializar la IDT
     call idt_inicializar
+    ; Cargar IDT
     lidt [IDT_DESC]
 
     call init_board
-    
-    int 0x00
-    ; Cargar IDT
+
+    int 8
 
     ; Configurar controlador de interrupciones
 

@@ -11,7 +11,6 @@
 #include "defines.h"
 
 #define PAG_COUNT 1024
-#define PAG_SIZE 4096
 #define PAG_DIR 0x27000
 #define PAG_TBL 0x28000
 
