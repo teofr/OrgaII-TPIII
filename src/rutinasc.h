@@ -4,6 +4,6 @@
 #include "colors.h"
 #include "screen.h"
 
-void isr0();
+void isr();
 
 #endif

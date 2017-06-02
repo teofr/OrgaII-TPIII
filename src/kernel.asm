@@ -15,6 +15,7 @@ extern print_int
 extern idt_inicializar
 extern init_board
 extern pag_init
+extern mmu_inicializar
 
 global start
 
@@ -51,19 +52,18 @@ start:
     ; Imprimir mensaje de bienvenida
     imprimir_texto_mr iniciando_mr_msg, iniciando_mr_len, 0x07, 0, 0
 
-
     ; Habilitar A20
     call habilitar_A20
     cli
     ; Cargar la GDT
     lgdt [GDT_DESC]
 
-    ; Setear el bit PE del registro CR0 TODO: Porque puedo usar eax, modo real no es 16bit?
+    ; Setear el bit PE del registro CR0
     mov eax, cr0
     or eax, 1
     mov cr0, eax
-    ; Saltar a modo protegido
 
+    ; Saltar a modo protegido
     jmp GDT_OFF_CS_K_DESC:modoprotegido
 
 BITS 32
@@ -79,21 +79,18 @@ BITS 32
     mov ax, GDT_OFF_VIDEO_DESC
     mov fs, ax
 
-
-
     ; Establecer la base de la pila
-
     mov ebp, 0x27000
     mov esp, ebp
 
     ; Imprimir mensaje de bienvenida
-
     imprimir_texto_mp iniciando_mp_msg, iniciando_mp_len, 0x07, 2, 0
 
     ; Inicializar pantalla
     call llenar_verde
 
     ; Inicializar el manejador de memoria
+    call mmu_inicializar
 
     ; Inicializar el directorio de paginas
     call pag_init
@@ -101,6 +98,7 @@ BITS 32
     ; Cargar directorio de paginas
     mov eax, PAG_DIR_ADDR
     mov cr3, eax
+
     ; Habilitar paginacion
     mov eax, cr0
     or eax, 0x80000001
@@ -114,12 +112,11 @@ BITS 32
 
     ; Inicializar la IDT
     call idt_inicializar
+
     ; Cargar IDT
     lidt [IDT_DESC]
 
     call init_board
-
-    int 8
 
     ; Configurar controlador de interrupciones
 

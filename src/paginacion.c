@@ -21,16 +21,15 @@
     pag[index].addr=(unsigned int) add;
 
 void pag_init(){
-  
+
   pag_entry (*pag_dir) = (pag_entry*) PAG_DIR;
 
-  PAG_ENTRY_MACRO(pag_dir, 0, PAG_TBL>>12);
+  PAG_ENTRY_MACRO(pag_dir, 0, PAG_TBL >> 12);
 
   pag_entry (*pag_tbl) = (pag_entry*) PAG_TBL;
 
   int i;
-  
-  for (i=0; i<PAG_COUNT; i++){
+  for (i = 0; i < PAG_COUNT; i++){
     PAG_ENTRY_MACRO(pag_tbl, i, i);
   }
 

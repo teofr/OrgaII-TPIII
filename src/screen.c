@@ -71,7 +71,7 @@ void imprimir_verde(){
   for(j = 0; j < VIDEO_FILS; j++){
     for(i = 0; i < VIDEO_COLS; i++){
       p[j][i].c = 0x20;
-      p[j][i].a = 0x22;
+      p[j][i].a = C_BG_GREEN | C_FG_GREEN;
     }
   }
 }
@@ -110,8 +110,8 @@ void imprimir_info(){
   }
 
   //Printea score de cada jugador
-  print_int(0, (39+33)/2, 47, C_BG_RED | C_FG_WHITE);
-  print_int(0, (44+38)/2, 47, C_BG_BLUE | C_FG_WHITE);
+  print_int(0, (39 + 33) / 2, 47, C_BG_RED | C_FG_WHITE);
+  print_int(0, (44 + 38) / 2, 47, C_BG_BLUE | C_FG_WHITE);
 
   //Printea cantidad de zombies disponibles de cada jugador
   print_int(8, 30, 47, C_BG_RED | C_FG_WHITE);
@@ -119,11 +119,11 @@ void imprimir_info(){
 
   //Printea info de zombis de cada jugador
   for(i = 1; i < 9; i++){
-    print_int(i,  4+i*2,46, C_BG_BLACK | C_FG_WHITE);//Printea numeros de jug rojo
-    print("X", 4+i*2, 48, C_BG_BLACK | C_FG_RED );
+    print_int(i,  4 + i*2, 46, C_BG_BLACK | C_FG_WHITE);//Printea numeros de jug rojo
+    print("X", 4 + i*2, 48, C_BG_BLACK | C_FG_RED );
 
-    print_int(i,  54+4+i*2, 46, C_BG_BLACK | C_FG_WHITE);//Printea numeros de jug azul
-    print("X", 54+4+i*2, 48, C_BG_BLACK | C_FG_BLUE );
+    print_int(i,  54 + 4 + i*2, 46, C_BG_BLACK | C_FG_WHITE);//Printea numeros de jug azul
+    print("X", 54 + 4 + i*2, 48, C_BG_BLACK | C_FG_BLUE );
 
   }
 }

@@ -31,7 +31,7 @@ void _isr17();
 void _isr18();
 void _isr19();
 
-extern void isr0();
+extern void isr();
 
 
 #endif  /* !__ISR_H__ */

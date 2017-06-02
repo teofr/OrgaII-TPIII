@@ -1,6 +1,6 @@
 
 %define VERDE (0x2 << 4) | 0x2
-%define PANTALLA_SIZE 2*80*50-1
+%define PANTALLA_SIZE 2*80*50 - 1
 %define CHAR_VACIO 0x20
 
 section .text

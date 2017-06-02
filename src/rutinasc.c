@@ -3,10 +3,10 @@
 void init_board2();
 
 
-void isr0(int a){
+void isr(unsigned int a){
 
-    int i=0;
-    int j=0;
+    int i = 0;
+    int j = 0;
     int k = 0;
     char* codigo_error;
 
@@ -100,56 +100,45 @@ void isr0(int a){
     int cambio = 0;
     int mult = 1;
 
-    for (k=0; 1 ; k++){
+    for (k = 0; 1 ; k++){
 
       int wait = 100000;
-      while(wait>0){
+      while(wait > 0){
         wait--;
       }
 
-      print(codigo_error, j, i,  ((C_FG_RED + i) | (C_BG_BLACK +j*i)) % C_BLINK);
+      print(codigo_error, j, i,  ((C_FG_RED + i) | (C_BG_BLACK + j*i)) % C_BLINK);
 
-      i = (i+sentido) % VIDEO_FILS;
-      if (i==49){
-        sentido=-1;
-        cambio+=(49-cambio)/2;
+      i = (i + sentido) % VIDEO_FILS;
+      if (i == 49){
+        sentido = -1;
+        cambio += (49 - cambio) / 2;
       }
 
       if(i == cambio){
-        sentido=1;
+        sentido = 1;
       }
 
-      j = (j+(k%2));
-      if (j>=VIDEO_COLS){
-        j=(13*mult) % VIDEO_COLS;
-        i=0;
-        cambio=0;
-        sentido=1;
+      j = (j + (k % 2));
+      if (j >= VIDEO_COLS){
+        j = (13 * mult) % VIDEO_COLS;
+        i = 0;
+        cambio = 0;
+        sentido = 1;
         mult++;
         wait = 1000000;
 
-        while(wait>0){
+        while(wait > 0){
           wait--;
         }
       }
 
-      if (mult>=30){
-        mult=1;
+      if (mult >= 30){
+        mult = 1;
         init_board2();
       }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 void imprimir_negro2(){
   ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;

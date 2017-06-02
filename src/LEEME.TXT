@@ -13,4 +13,10 @@ Los pasos para compilar son:
 
     $ bochs -q
 
-3. Disfrutar de su kernel corriendo!!
+3. Disfrutar de su kernel corriendo
+
+///////////////////////////////////////////////////////////////////////////////
+
+Decisiones del TP:
+
+- Cuando mapeamos una página a memoria física, asumimos que la memoria se inicializa llena de 0

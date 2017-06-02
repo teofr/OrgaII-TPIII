@@ -33,7 +33,7 @@
 #define GDT_IDX_DS_K_DESC           9
 #define GDT_IDX_CS_U_DESC           10
 #define GDT_IDX_DS_U_DESC           11
-#define GDT_IDX_VIDEO_DESC           12
+#define GDT_IDX_VIDEO_DESC          12
 
 /* Offsets en la gdt */
 /* -------------------------------------------------------------------------- */
@@ -50,8 +50,8 @@
 
 /* Paginación */
 /* -------------------------------------------------------------------------- */
-#define PAG_SIZE 0x1000
-#define INIT_LIBRE 0x100000
+#define PAG_SIZE    0x1000
+#define INIT_LIBRE  0x100000
 
 
 #endif  /* !__DEFINES_H__ */

@@ -35,7 +35,7 @@ _isr%1:
     push 20
     push 20
     push %1
-    call isr0
+    call isr
     jmp $
 
 %endmacro

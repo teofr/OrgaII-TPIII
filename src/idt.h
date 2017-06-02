@@ -24,8 +24,8 @@ typedef struct str_idt_entry_fld {
     unsigned short offset_16_31;
 } __attribute__((__packed__, aligned (8))) idt_entry;
 
-extern idt_entry idt[];
-extern idt_descriptor IDT_DESC;
+idt_entry idt[];
+idt_descriptor IDT_DESC;
 
 void idt_inicializar();
 
