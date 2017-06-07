@@ -20,7 +20,10 @@ extern fin_intr_pic1
 ;; Sched
 extern sched_proximo_indice
 
-extern isr0
+;; Clock
+extern game_clock
+
+extern isr
 ;;
 ;; Definición de MACROS
 ;; -------------------------------------------------------------------------- ;;
@@ -71,6 +74,17 @@ ISR 16
 ISR 17
 ISR 18
 ISR 19
+
+global _isr32
+_isr32:
+  ;pushad
+  ;pushfd
+  call game_clock
+  call fin_intr_pic1
+  ;popfd
+  ;popad
+  iret
+
 
 
 ;;

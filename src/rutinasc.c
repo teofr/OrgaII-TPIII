@@ -65,7 +65,7 @@ void isr(unsigned int a){
         break;
 
       case 13:
-        codigo_error ="   SEGFAULT   ";
+        codigo_error ="d";
         break;
 
       case 14:

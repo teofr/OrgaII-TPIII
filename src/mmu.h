@@ -25,4 +25,6 @@ void mmu_mappear_pagina(unsigned int virtual, unsigned int dir_pd, unsigned int 
 
 void mmu_desmappear_pagina(unsigned int virtual, unsigned int dir_pd);
 
+unsigned int mmu_inicializar_dir_zombi(unsigned int jug, unsigned int z);
+
 #endif	/* !__MMU_H__ */
