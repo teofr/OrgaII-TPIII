@@ -53,5 +53,8 @@
 #define PAG_SIZE    0x1000
 #define INIT_LIBRE  0x100000
 
+/* Game */
+#define MAP_INIT 0x400000
+
 
 #endif  /* !__DEFINES_H__ */

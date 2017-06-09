@@ -51,6 +51,14 @@ void print_int(unsigned int n, unsigned int x, unsigned int y, unsigned short at
     p[y][x].a = attr;
 }
 
+void print_ca(ca jug, unsigned int x, unsigned int y){
+  ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
+
+  p[y][x].c = (unsigned char) jug.c;
+  p[y][x].a = (unsigned char) jug.a;
+
+}
+
 void imprimir_negro(){
   ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
   int i,j;
@@ -107,8 +115,13 @@ void imprimir_info(){
       }
 
     }
+
   }
 
+  for(i = 0; i < VIDEO_COLS; i++){
+    p[0][i].c = 0x20;
+    p[0][i].a = C_BG_BLACK;
+  }
   //Printea score de cada jugador
   print_int(0, (39 + 33) / 2, 47, C_BG_RED | C_FG_WHITE);
   print_int(0, (44 + 38) / 2, 47, C_BG_BLUE | C_FG_WHITE);

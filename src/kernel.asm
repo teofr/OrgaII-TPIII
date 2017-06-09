@@ -16,6 +16,11 @@ extern idt_inicializar
 extern init_board
 extern pag_init
 extern mmu_inicializar
+extern game_init
+
+;;PIC
+extern resetear_pic
+extern habilitar_pic
 
 global start
 
@@ -116,24 +121,29 @@ BITS 32
     ; Cargar IDT
     lidt [IDT_DESC]
 
-    call init_board
 
     ; Configurar controlador de interrupciones
+    call resetear_pic
+    call habilitar_pic
 
     ; Cargar tarea inicial
+    call init_board
+    call game_init
 
     ; Habilitar interrupciones
+    sti
 
     ; Saltar a la primera tarea: Idle
 
     ; Ciclar infinitamente (por si algo sale mal...)
+    ciclo:
     mov eax, 0xFFFF
     mov ebx, 0xFFFF
     mov ecx, 0xFFFF
     mov edx, 0xFFFF
 
-    jmp $
-    jmp $
+    jmp ciclo
+    jmp ciclo
 
 ;; -------------------------------------------------------------------------- ;;
 

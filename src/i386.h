@@ -25,6 +25,8 @@ LS_INLINE void ltr(unsigned short sel);
 LS_INLINE unsigned short rtr(void);
 LS_INLINE void hlt(void);
 LS_INLINE void breakpoint(void);
+static inline char inb(unsigned short port);
+static inline void outb(unsigned short port, char val);
 
 /*
  * Implementaciones
@@ -104,4 +106,21 @@ LS_INLINE void breakpoint(void) {
     __asm __volatile("xchg %%bx, %%bx" : :);
 }
 
+static inline char inb(unsigned short port)
+{
+    char ret;
+    asm volatile ( "inb %1, %0"
+                   : "=a"(ret)
+                   : "Nd"(port) );
+    return ret;
+}
+
+static inline void outb(unsigned short port, char val)
+{
+    asm volatile ( "outb %0, %1" : : "a"(val), "Nd"(port) );
+    /* There's an outb %al, $imm8  encoding, for compile-time constant port numbers that fit in 8b.  (N constraint).
+     * Wider immediate constants would be truncated at assemble-time (e.g. "i" constraint).
+     * The  outb  %al, %dx  encoding is the only option for all other cases.
+     * %1 expands to %dx because  port  is a unsigned short.  %w1 could be used if we had the port number a wider C type */
+}
 #endif  /* !__i386_H__ */
