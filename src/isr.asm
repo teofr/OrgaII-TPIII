@@ -20,10 +20,11 @@ extern fin_intr_pic1
 ;; Sched
 extern sched_proximo_indice
 
-;; Clock
-extern game_clock
-
+;;Rutinas de interrupcion (rutinasc.h)
 extern isr
+extern isr32
+extern isr33
+
 ;;
 ;; Definición de MACROS
 ;; -------------------------------------------------------------------------- ;;
@@ -33,16 +34,31 @@ global _isr%1
 ;void print_int(unsigned int n, unsigned int x, unsigned int y, unsigned short attr);
 
 _isr%1:
+    pushfd
+    pushad
+    call fin_intr_pic1
     mov eax, %1
-    push 0x20
-    push 20
-    push 20
     push %1
     call isr
-    jmp $
+    popad
+    popfd
+    iret
 
 %endmacro
 
+%macro ISR2 1
+global _isr%1
+
+_isr%1:
+    pushfd
+    pushad
+    call fin_intr_pic1
+    mov eax, %1
+    call isr%1
+    popad
+    popfd
+    iret
+%endmacro
 ;;
 ;; Datos
 ;; -------------------------------------------------------------------------- ;;
@@ -75,16 +91,8 @@ ISR 17
 ISR 18
 ISR 19
 
-global _isr32
-_isr32:
-  ;pushad
-  ;pushfd
-  call game_clock
-  call fin_intr_pic1
-  ;popfd
-  ;popad
-  iret
-
+ISR2 32
+ISR2 33
 
 
 ;;

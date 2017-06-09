@@ -8,7 +8,7 @@
 #include "defines.h"
 #include "idt.h"
 #include "isr.h"
-
+#include "rutinasc.h"
 #include "tss.h"
 
 idt_entry idt[255] = { };
@@ -66,5 +66,5 @@ void idt_inicializar() {
     IDT_ENTRY(19);
 
     IDT_ENTRY(32); //Clock
-
+    IDT_ENTRY(33); //Teclado
 }

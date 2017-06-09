@@ -32,7 +32,9 @@ void _isr18();
 void _isr19();
 
 void _isr32(); //Clock
+void _isr33(); //Teclado
 
+extern void isr33();
 extern void isr();
 
 
