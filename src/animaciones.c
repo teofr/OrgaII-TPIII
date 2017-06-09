@@ -5,7 +5,7 @@ negro.a = 0;
 negro.c = 0x20;
 
 ca rojo;
-rojo.a = C_BG_ROJO | C_FG_ROJO
+rojo.a = C_BG_RED | C_FG_RED
 rojo.c = 0x20;
 
 ca magenta;
@@ -20,7 +20,7 @@ castilloY[TAM_CASTILLO] = { 43, 42, 43, 41, 42, 43, 40, 41, 43, 43, 43, 42, 43, 
 patron castillo;
 castillo = patron_init(negro, castilloX, castilloY, TAM_CASTILLO);
 
-frame0 = frame_init(castillo, 1);
+frame frame0 = frame_init(castillo, 1);
 
 /*-----------------------------------------------------*/
 mensajeX_f1[TAM_MENSAJE_F1] = { 39, 39, 39, 39, 39, 40, 40, 41, 41, 42, 43, 43, 43, 43, 43, 43, 43, 44, 45, 46, 46, 47, 47, 47, 47, 47, 47 };
@@ -36,7 +36,7 @@ patron estrella_f1;
 estrella_f1 = patron_init(magenta, estrellaX_f1, estrellaY_f1, TAM_ESTRELLA_F1);
 
 patron patrones_f1[2] = {mensaje_f1, estrella_f1};
-frame1 = frame_init(patrones_f1, 2);
+frame frame1 = frame_init(patrones_f1, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f2[TAM_MENSAJE_F2] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 41, 41, 41, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 45, 45, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -52,7 +52,7 @@ patron estrella_f2;
 estrella_f2 = patron_init(magenta, estrellaX_f2, estrellaY_f2, TAM_ESTRELLA_F2);
 
 patron patrones_f2[2] = {mensaje_f2, estrella_f2};
-frame2 = frame_init(patrones_f2, 2);
+frame frame2 = frame_init(patrones_f2, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f3[TAM_MENSAJE_F3] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -68,7 +68,7 @@ patron estrella_f3;
 estrella_f3 = patron_init(magenta, estrellaX_f3, estrellaY_f3, TAM_ESTRELLA_F3);
 
 patron patrones_f3[2] = {mensaje_f3, estrella_f3};
-frame3 = frame_init(patrones_f3, 2);
+frame frame3 = frame_init(patrones_f3, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f4[TAM_MENSAJE_F4] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -84,7 +84,7 @@ patron estrella_f4;
 estrella_f4 = patron_init(magenta, estrellaX_f4, estrellaY_f4, TAM_ESTRELLA_F4);
 
 patron patrones_f4[2] = {mensaje_f4, estrella_f4};
-frame4 = frame_init(patrones_f4, 2);
+frame frame4 = frame_init(patrones_f4, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f5[TAM_MENSAJE_F5] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -100,7 +100,7 @@ patron estrella_f5;
 estrella_f5 = patron_init(magenta, estrellaX_f5, estrellaY_f5, TAM_ESTRELLA_F5);
 
 patron patrones_f5[2] = {mensaje_f5, estrella_f5};
-frame5 = frame_init(patrones_f5, 2);
+frame frame5 = frame_init(patrones_f5, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f6[TAM_MENSAJE_F6] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -116,7 +116,7 @@ patron estrella_f6;
 estrella_f6 = patron_init(magenta, estrellaX_f6, estrellaY_f6, TAM_ESTRELLA_F6);
 
 patron patrones_f6[2] = {mensaje_f6, estrella_f6};
-frame6 = frame_init(patrones_f6, 2);
+frame frame6 = frame_init(patrones_f6, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f7[TAM_MENSAJE_F7] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -132,7 +132,7 @@ patron estrella_f7;
 estrella_f7 = patron_init(magenta, estrellaX_f7, estrellaY_f7, TAM_ESTRELLA_F7);
 
 patron patrones_f7[2] = {mensaje_f7, estrella_f7};
-frame7 = frame_init(patrones_f7, 2);
+frame frame7 = frame_init(patrones_f7, 2);
 
 /*-----------------------------------------------------*/
 mensajeX_f8[TAM_MENSAJE_F8] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -148,5 +148,33 @@ patron estrella_f8;
 estrella_f8 = patron_init(magenta, estrellaX_f8, estrellaY_f8, TAM_ESTRELLA_F8);
 
 patron patrones_f8[2] = {mensaje_f8, estrella_f8};
-frame8 = frame_init(patrones_f8, 2);
+frame frame8 = frame_init(patrones_f8, 2);
+
+/*-----------------------------------------------------*/
+frame frames[9] = {frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8};
+seg_fault_gif = gif_init(frames, 9);
+
+
+patron patron_init(ca color, unsigned int f[], unsigned int, c[], unsigned int tam){
+    patron temp;
+    temp.color = color;
+    temp.filas = f;
+    temp.columnas = c;
+    temp.tam = t;
+    return temp;
+}
+
+frame frame_init(patron ps[], unsigned int t){
+    frame temp;
+    temp.patrones = ps;
+    temp.tam = t;
+    return temp;
+}
+
+gif gif_init(frame fs[], unsigned int t){
+    gif temp;
+    temp.frames = fs;
+    temp.tam = t
+    return temp;
+}
 

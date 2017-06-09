@@ -22,7 +22,7 @@
 
 #define SIZE_W                  78
 #define SIZE_H                  44
-
+#define WAIT(t) unsigned int espera; espera = t; while(t>0){t--;}
 
 /* Indices en la gdt */
 /* -------------------------------------------------------------------------- */

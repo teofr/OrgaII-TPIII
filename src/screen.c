@@ -84,6 +84,18 @@ void imprimir_verde(){
   }
 }
 
+void imprimir_azul(){
+  ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
+  int i,j;
+
+  for(j = 0; j < VIDEO_FILS; j++){
+    for(i = 0; i < VIDEO_COLS; i++){
+      p[j][i].c = 0x20;
+      p[j][i].a = C_BG_BLUE | C_FG_BLUE;
+    }
+  }
+}
+
 void imprimir_bordes(){
   ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
   int i;
@@ -146,4 +158,27 @@ void init_board(){
   imprimir_verde();
   imprimir_bordes();
   imprimir_info();
+}
+
+
+void print_patron(patron p){
+  int i;
+  for(i = 0; i < p.tam; i++){
+    print_ca(p.color, p.columnas[i], p.filas[i]);
+  }
+}
+
+void print_frame(frame f){
+  int i;
+  for(i = 0; i < f.tam; i++){
+    print_patron(f.patrones[i]);
+  }
+}
+
+void print_gif(gif g){
+  int i;
+  for(i = 0; i < g.tam; i++){
+    print_frame(g.frames[i]);
+    WAIT(10000)
+  }
 }

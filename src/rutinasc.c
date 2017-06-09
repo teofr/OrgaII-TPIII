@@ -1,5 +1,12 @@
 #include "rutinasc.h"
 
+void isr0(){
+
+  imprimir_azul();
+  print_gif(seg_fault_gif);
+
+}
+
 void isr32(){
   state++;
   state=state%diffStates;
@@ -28,10 +35,6 @@ void isr(unsigned int a){
     char* codigo_error;
 
     switch (a) {
-
-      case 0:
-        codigo_error ="   Divide Error   ";
-        break;
 
       case 1:
         codigo_error ="   Debug   ";

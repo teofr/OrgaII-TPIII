@@ -22,6 +22,7 @@ extern sched_proximo_indice
 
 ;;Rutinas de interrupcion (rutinasc.h)
 extern isr
+extern isr0
 extern isr32
 extern isr33
 
@@ -70,7 +71,7 @@ isrClock:            db '|/-\'
 ;; Rutina de atención de las EXCEPCIONES
 ;; -------------------------------------------------------------------------- ;;
 
-ISR 0
+ISR2 0
 ISR 1
 ISR 2
 ISR 3
