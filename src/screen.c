@@ -159,26 +159,3 @@ void init_board(){
   imprimir_bordes();
   imprimir_info();
 }
-
-
-void print_patron(patron p){
-  int i;
-  for(i = 0; i < p.tam; i++){
-    print_ca(p.color, p.columnas[i], p.filas[i]);
-  }
-}
-
-void print_frame(frame f){
-  int i;
-  for(i = 0; i < f.tam; i++){
-    print_patron(f.patrones[i]);
-  }
-}
-
-void print_gif(gif g){
-  int i;
-  for(i = 0; i < g.tam; i++){
-    print_frame(g.frames[i]);
-    WAIT(10000)
-  }
-}

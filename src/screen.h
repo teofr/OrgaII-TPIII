@@ -12,11 +12,10 @@
 #define VIDEO_FILS 50
 #define VIDEO_COLS 80
 
-#include "animaciones.h"
 #include "colors.h"
 #include "defines.h"
-#include "animaciones.h"
-  
+
+
 /* Estructura de para acceder a memoria de video */
 typedef struct ca_s {
     unsigned char c;
@@ -36,8 +35,6 @@ void init_board();
 
 //Funciones para animaciones.h
 
-void print_patron(patron p);
 
-void print_frame(frame f);
 
 #endif  /* !__SCREEN_H__ */

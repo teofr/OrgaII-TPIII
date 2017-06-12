@@ -7,7 +7,7 @@
 
 #define TAM_CASTILLO 1785
 
-#define TAM_MENSAJE_F1 27  
+#define TAM_MENSAJE_F1 27
 #define TAM_MENSAJE_F2 51
 #define TAM_MENSAJE_F3 75
 #define TAM_MENSAJE_F4 92
@@ -25,31 +25,7 @@
 #define TAM_ESTRELLA_F7 93
 #define TAM_ESTRELLA_F8 119
 
-typedef struct patron_t{
-    ca color;
-    unsigned int tam;
-    unsigned int filas[];
-    unsigned int columnas[];
-} patron;
+void print_frame(unsigned int filas[], unsigned int columnas[], ca color);
 
-typedef struct frame_t {
-    unsigned int tam;
-    patron patrones[];
-    
-} frame; 
-
-typedef struct gif_t {
-    unsigned int tam;
-    frame frames[];
-    
-} gif;
-
-patron patron_init(ca color, unsigned int f[], unsigned int c[], unsigned int t);
-
-frame frame_init(patron ps[], unsigned int t);
-
-gif gif_init(frame fs[], unsigned int t);
-
-extern gif seg_fault_gif;
 
 #endif
