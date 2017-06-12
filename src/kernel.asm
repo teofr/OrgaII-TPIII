@@ -129,7 +129,7 @@ BITS 32
     ; Cargar tarea inicial
     call init_board
     call game_init
-
+    int 0
     ; Habilitar interrupciones
     sti
 

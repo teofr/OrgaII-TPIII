@@ -1,16 +1,5 @@
 #include "animaciones.h"
 
-ca negro;
-negro.a = 0;
-negro.c = 0x20;
-
-ca rojo;
-rojo.a = C_BG_RED | C_FG_RED
-rojo.c = 0x20;
-
-ca magenta;
-magenta.a = C_BG_MAGENTA | C_FG_MAGENTA
-magenta.c = 0x20;
 /*-----------------------------------------------------*/
 
 
@@ -43,7 +32,7 @@ unsigned int mensajeX_f4[TAM_MENSAJE_F4] = { 39, 39, 39, 39, 39, 39, 39, 39, 39,
 unsigned int mensajeY_f4[TAM_MENSAJE_F4] = { 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 29, 30, 31, 32, 39, 40, 41, 42, 43, 44, 11, 12, 19, 28, 29, 39, 10, 11, 19, 27, 28, 39, 10, 19, 27, 39, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 27, 39, 40, 41, 42, 16, 19, 27, 31, 32, 33, 39, 16, 19, 27, 33, 39, 15, 16, 19, 27, 33, 39, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31, 32, 33, 39 };
 
 unsigned int estrellaX_f4[TAM_ESTRELLA_F4] = { 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23 };
-unsigned int estrellaY_f4[TAM_ESTRELLA_F4] = { 54, 54, 55, 56, 56, 57, 58, 58, 59, 59, 60, 61, 61, 62, 63, 63, 64, 65, 65, 66, 66, 67, 67, 68, 68, 69, 69, 70, 70, 71, 71, 72, 72, 73, 73, 74, 74, 75, 75, 76, 76, 77, 77, 7unsigned int 8, 78, 79 };
+unsigned int estrellaY_f4[TAM_ESTRELLA_F4] = { 54, 54, 55, 56, 56, 57, 58, 58, 59, 59, 60, 61, 61, 62, 63, 63, 64, 65, 65, 66, 66, 67, 67, 68, 68, 69, 69, 70, 70, 71, 71, 72, 72, 73, 73, 74, 74, 75, 75, 76, 76, 77, 77, 78, 78, 79 };
 
 /*-----------------------------------------------------*/
 unsigned int mensajeX_f5[TAM_MENSAJE_F5] = { 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47 };
@@ -75,9 +64,66 @@ unsigned int estrellaY_f8[TAM_ESTRELLA_F8] = { 31, 32, 33, 34, 35, 36, 37, 38, 3
 
 void print_frame(unsigned int filas[], unsigned int columnas[], unsigned int size, ca color){
   unsigned int i;
-  for(i = 0; i < size, i++){
-    print_ca(columnas[i], filas[i], color);
+  for(i = 0; i < size; i++){
+    print_ca(color, columnas[i], filas[i]);
   }
 }
 
-void print_gif_seg()
+void print_gif_seg_fault(){
+  imprimir_azul();
+
+  ca negro;
+  negro.a = 0;
+  negro.c = 0x20;
+
+  ca rojo;
+  rojo.a = C_BG_RED | C_FG_RED;
+  rojo.c = 0x20;
+
+  ca magenta;
+  magenta.a = C_BG_MAGENTA | C_FG_MAGENTA;
+  magenta.c = 0x20;
+
+  //Frame 0
+  print_frame(castilloX, castilloY, TAM_CASTILLO, negro);
+
+  //Frame 1
+  print_frame(mensajeX_f1, mensajeY_f1, TAM_MENSAJE_F1, rojo);
+  print_frame(estrellaX_f1, estrellaY_f1, TAM_ESTRELLA_F1, magenta);
+  FIRST_WAIT(1000)
+
+  //Frame 2
+  print_frame(mensajeX_f2, mensajeY_f2, TAM_MENSAJE_F2,rojo);
+  print_frame(estrellaX_f2, estrellaY_f2, TAM_ESTRELLA_F2, magenta);
+  WAIT(1000)
+
+  //Frame 3
+  print_frame(mensajeX_f3, mensajeY_f3, TAM_MENSAJE_F3, rojo);
+  print_frame(estrellaX_f3, estrellaY_f3, TAM_ESTRELLA_F3, magenta);
+  WAIT(1000)
+
+  //Frame 4
+  print_frame(mensajeX_f4, mensajeY_f4, TAM_MENSAJE_F4, rojo);
+  print_frame(estrellaX_f4, estrellaY_f4, TAM_ESTRELLA_F4, magenta);
+  WAIT(1000)
+
+  //Frame 5
+  print_frame(mensajeX_f5, mensajeY_f5, TAM_MENSAJE_F5, rojo);
+  print_frame(estrellaX_f5, estrellaY_f5, TAM_ESTRELLA_F5, magenta);
+  WAIT(1000)
+
+  //Frame 6
+  print_frame(mensajeX_f6, mensajeY_f6, TAM_MENSAJE_F6, rojo);
+  print_frame(estrellaX_f6, estrellaY_f6, TAM_ESTRELLA_F6, magenta);
+  WAIT(1000)
+
+  //Frame 7
+  print_frame(mensajeX_f7, mensajeY_f7, TAM_MENSAJE_F7, rojo);
+  print_frame(estrellaX_f7, estrellaY_f7, TAM_ESTRELLA_F7, magenta);
+  WAIT(1000)
+
+  //Frame 8
+  print_frame(mensajeX_f8, mensajeY_f8, TAM_MENSAJE_F8, rojo);
+  print_frame(estrellaX_f8, estrellaY_f8, TAM_ESTRELLA_F8, magenta);
+
+}

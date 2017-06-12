@@ -22,8 +22,8 @@
 
 #define SIZE_W                  78
 #define SIZE_H                  44
-#define WAIT(t) unsigned int espera; espera = t; while(t>0){t--;}
-
+#define FIRST_WAIT(t) unsigned int espera; espera = t; while(espera>0){espera--;}
+#define WAIT(t) espera = t; while(espera > 0){espera--;}
 /* Indices en la gdt */
 /* -------------------------------------------------------------------------- */
 #define GDT_COUNT 30

@@ -1,10 +1,7 @@
 #include "rutinasc.h"
 
 void isr0(){
-
-  imprimir_azul();
-  print_gif(seg_fault_gif);
-
+  print_gif_seg_fault();
 }
 
 void isr32(){

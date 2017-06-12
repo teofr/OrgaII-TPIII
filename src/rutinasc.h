@@ -16,4 +16,5 @@ void isr32();
 void isr33();
 void isr();
 
+extern void print_gif_seg_fault();
 #endif

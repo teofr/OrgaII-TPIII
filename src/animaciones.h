@@ -1,8 +1,6 @@
 #ifndef __ANIMACIONES_H__
 #define __ANIMACIONES_H__
 
-#include "defines.h"
-#include "colors.h"
 #include "screen.h"
 
 #define TAM_CASTILLO 1785
@@ -25,7 +23,9 @@
 #define TAM_ESTRELLA_F7 93
 #define TAM_ESTRELLA_F8 119
 
-void print_frame(unsigned int filas[], unsigned int columnas[], ca color);
+void print_gif_seg_fault();
+
+extern void imprimir_azul();
 
 
 #endif
