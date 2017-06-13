@@ -8,6 +8,8 @@
 %define GDT_OFF_DS_K_DESC 0x48
 %define GDT_OFF_VIDEO_DESC 0x60
 %define PAG_DIR_ADDR 0x27000
+%define GDT_OFF_INICIAL_DESC 13*8
+%define GDT_OFF_IDLE_DESC 14*8
 
 extern GDT_DESC
 extern IDT_DESC
@@ -16,7 +18,9 @@ extern idt_inicializar
 extern init_board
 extern pag_init
 extern mmu_inicializar
+extern mmu_inicializar_dir_zombi
 extern game_init
+extern tss_inicializar
 
 ;;PIC
 extern resetear_pic
@@ -129,9 +133,16 @@ BITS 32
     ; Cargar tarea inicial
     call init_board
     call game_init
-    
+
+    call tss_inicializar
+    mov ax, GDT_OFF_INICIAL_DESC
+    ltr ax
+    jmp GDT_OFF_IDLE_DESC:0
     ; Habilitar interrupciones
     sti
+
+
+
 
     ; Saltar a la primera tarea: Idle
 

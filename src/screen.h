@@ -33,6 +33,8 @@ void print_ca(ca jug, unsigned int x, unsigned int y);
 
 void init_board();
 
+void fill(unsigned short s);
+
 //Funciones para animaciones.h
 
 

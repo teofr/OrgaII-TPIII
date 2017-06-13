@@ -59,7 +59,7 @@ void print_ca(ca jug, unsigned int x, unsigned int y){
 
 }
 
-void imprimir_negro(){
+void fill(unsigned short s){
   ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
   int i,j;
 
@@ -67,34 +67,11 @@ void imprimir_negro(){
     for(j = 0; j < VIDEO_FILS; j++){
 
       p[j][i].c = 0x20;
-      p[j][i].a = C_BG_BLACK;
+      p[j][i].a = s;
     }
   }
 }
 
-void imprimir_verde(){
-  ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
-  int i,j;
-
-  for(j = 0; j < VIDEO_FILS; j++){
-    for(i = 0; i < VIDEO_COLS; i++){
-      p[j][i].c = 0x20;
-      p[j][i].a = C_BG_GREEN | C_FG_GREEN;
-    }
-  }
-}
-
-void imprimir_azul(){
-  ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
-  int i,j;
-
-  for(j = 0; j < VIDEO_FILS; j++){
-    for(i = 0; i < VIDEO_COLS; i++){
-      p[j][i].c = 0x20;
-      p[j][i].a = C_BG_BLUE | C_FG_BLUE;
-    }
-  }
-}
 
 void imprimir_bordes(){
   ca (*p)[VIDEO_COLS] = (ca (*)[VIDEO_COLS]) VIDEO;
@@ -154,8 +131,8 @@ void imprimir_info(){
 }
 
 void init_board(){
-  imprimir_negro();
-  imprimir_verde();
+  fill(C_BG_BLACK);
+  fill(C_BG_GREEN);
   imprimir_bordes();
   imprimir_info();
 }

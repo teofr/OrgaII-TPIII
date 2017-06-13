@@ -25,7 +25,6 @@
 
 void print_gif_seg_fault();
 
-extern void imprimir_azul();
 
 
 #endif

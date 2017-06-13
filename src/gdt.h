@@ -9,6 +9,7 @@
 #define __GDT_H__
 
 #include "defines.h"
+#include "tss.h"
 
 
 typedef struct str_gdt_descriptor {
@@ -35,6 +36,8 @@ typedef struct str_gdt_entry {
 /* Tabla GDT */
 extern gdt_entry gdt[];
 extern gdt_descriptor GDT_DESC;
+
+void init_tss_desc(unsigned int idx, unsigned int tss_pointer, unsigned int tss_size, unsigned int dpl);
 
 
 #endif  /* !__GDT_H__ */

@@ -70,7 +70,7 @@ void print_frame(unsigned int filas[], unsigned int columnas[], unsigned int siz
 }
 
 void print_gif_seg_fault(){
-  imprimir_azul();
+  fill(C_BG_BLUE);
 
   ca negro;
   negro.a = 0;

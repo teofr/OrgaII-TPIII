@@ -109,3 +109,21 @@ gdt_descriptor GDT_DESC = {
     sizeof(gdt) - 1,
     (unsigned int) &gdt
 };
+
+void init_tss_desc(unsigned int idx, unsigned int tss_pointer, unsigned int tss_size, unsigned int dpl){
+  gdt[idx] = (gdt_entry) {
+      (unsigned short)    tss_size - 1,             /* limit[0:15]  */
+      (unsigned short)    tss_pointer,       /* base[0:15]   */
+      (unsigned char)     tss_pointer >> 15,   /* base[23:16]  */
+      (unsigned char)     0x09,               /* type  se cargan los bits codigo=0 expand-down=0 w=1 accesed=0 */
+      (unsigned char)     0x00,               /* s            */
+      (unsigned char)     dpl,               /* dpl          */
+      (unsigned char)     0x01,               /* p            */
+      (unsigned char)     (tss_size - 1) >> 15,               /* limit[16:19] */
+      (unsigned char)     0x00,               /* avl          */
+      (unsigned char)     0x00,               /* l            */
+      (unsigned char)     0x01,               /* db           */
+      (unsigned char)     0x00,               /* g            */
+      (unsigned char)     tss_pointer >> 23,               /* base[31:24]  */
+  };
+}

@@ -34,6 +34,9 @@
 #define GDT_IDX_CS_U_DESC           10
 #define GDT_IDX_DS_U_DESC           11
 #define GDT_IDX_VIDEO_DESC          12
+//TSSs
+#define GDT_IDX_TSS_INICIAL         13
+#define GDT_IDX_TSS_IDLE            14
 
 /* Offsets en la gdt */
 /* -------------------------------------------------------------------------- */
@@ -43,6 +46,8 @@
 #define GDT_OFF_CS_U_DESC           (GDT_IDX_CS_U_DESC      << 3 | 3) // el | 3 es para setear el bit de privilegios
 #define GDT_OFF_DS_U_DESC           (GDT_IDX_DS_U_DESC      << 3 | 3)
 #define GDT_OFF_VIDEO_DESC          (GDT_IDX_VIDEO_DESC     << 3)
+#define GDT_OFF_INICIAL_DESC        (GDT_IDX_INICIAL_DESC   << 3)
+#define GDT_OFF_IDLE_DESC           (GDT_IDX_IDLE_DESC      << 3)
 
 /* Direcciones de memoria */
 /* -------------------------------------------------------------------------- */

@@ -25,6 +25,15 @@ LS_INLINE void ltr(unsigned short sel);
 LS_INLINE unsigned short rtr(void);
 LS_INLINE void hlt(void);
 LS_INLINE void breakpoint(void);
+LS_INLINE unsigned int resp(void);
+LS_INLINE unsigned int rebp(void);
+LS_INLINE unsigned short res(void);
+LS_INLINE unsigned short rcs(void);
+LS_INLINE unsigned short rss(void);
+LS_INLINE unsigned short rds(void);
+LS_INLINE unsigned short rfs(void);
+LS_INLINE unsigned short rgs(void);
+
 static inline char inb(unsigned short port);
 static inline void outb(unsigned short port, char val);
 
@@ -122,5 +131,53 @@ static inline void outb(unsigned short port, char val)
      * Wider immediate constants would be truncated at assemble-time (e.g. "i" constraint).
      * The  outb  %al, %dx  encoding is the only option for all other cases.
      * %1 expands to %dx because  port  is a unsigned short.  %w1 could be used if we had the port number a wider C type */
+}
+
+LS_INLINE unsigned int resp(void) {
+    unsigned int val;
+    __asm __volatile("movl %%esp,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned int rebp(void) {
+    unsigned int val;
+    __asm __volatile("movl %%ebp,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned short res(void) {
+    unsigned short val;
+    __asm __volatile("movl %%es,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned short rcs(void) {
+    unsigned short val;
+    __asm __volatile("movl %%cs,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned short rss(void) {
+    unsigned short val;
+    __asm __volatile("movl %%ss,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned short rds(void) {
+    unsigned short val;
+    __asm __volatile("movl %%ds,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned short rfs(void) {
+    unsigned short val;
+    __asm __volatile("movl %%fs,%0" : "=r" (val));
+    return val;
+}
+
+LS_INLINE unsigned short rgs(void) {
+    unsigned short val;
+    __asm __volatile("movl %%gs,%0" : "=r" (val));
+    return val;
 }
 #endif  /* !__i386_H__ */
