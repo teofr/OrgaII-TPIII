@@ -81,8 +81,8 @@ void print_gif_seg_fault(){
   rojo.c = 0x20;
 
   ca magenta;
-  magenta.a = C_BG_MAGENTA | C_FG_MAGENTA;
-  magenta.c = 0x20;
+  magenta.a = C_BG_BLUE | C_FG_MAGENTA | C_BLINK;
+  magenta.c = 0x2A;
 
   //Frame 0
   print_frame(castilloX, castilloY, TAM_CASTILLO, negro);
@@ -90,37 +90,37 @@ void print_gif_seg_fault(){
   //Frame 1
   print_frame(mensajeX_f1, mensajeY_f1, TAM_MENSAJE_F1, rojo);
   print_frame(estrellaX_f1, estrellaY_f1, TAM_ESTRELLA_F1, magenta);
-  FIRST_WAIT(1000)
+  FIRST_WAIT(10000000)
 
   //Frame 2
   print_frame(mensajeX_f2, mensajeY_f2, TAM_MENSAJE_F2,rojo);
   print_frame(estrellaX_f2, estrellaY_f2, TAM_ESTRELLA_F2, magenta);
-  WAIT(1000)
+  WAIT(10000000)
 
   //Frame 3
   print_frame(mensajeX_f3, mensajeY_f3, TAM_MENSAJE_F3, rojo);
   print_frame(estrellaX_f3, estrellaY_f3, TAM_ESTRELLA_F3, magenta);
-  WAIT(1000)
+  WAIT(10000000)
 
   //Frame 4
   print_frame(mensajeX_f4, mensajeY_f4, TAM_MENSAJE_F4, rojo);
   print_frame(estrellaX_f4, estrellaY_f4, TAM_ESTRELLA_F4, magenta);
-  WAIT(1000)
+  WAIT(10000000)
 
   //Frame 5
   print_frame(mensajeX_f5, mensajeY_f5, TAM_MENSAJE_F5, rojo);
   print_frame(estrellaX_f5, estrellaY_f5, TAM_ESTRELLA_F5, magenta);
-  WAIT(1000)
+  WAIT(10000000)
 
   //Frame 6
   print_frame(mensajeX_f6, mensajeY_f6, TAM_MENSAJE_F6, rojo);
   print_frame(estrellaX_f6, estrellaY_f6, TAM_ESTRELLA_F6, magenta);
-  WAIT(1000)
+  WAIT(10000000)
 
   //Frame 7
   print_frame(mensajeX_f7, mensajeY_f7, TAM_MENSAJE_F7, rojo);
   print_frame(estrellaX_f7, estrellaY_f7, TAM_ESTRELLA_F7, magenta);
-  WAIT(1000)
+  WAIT(10000000)
 
   //Frame 8
   print_frame(mensajeX_f8, mensajeY_f8, TAM_MENSAJE_F8, rojo);
