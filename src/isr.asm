@@ -51,6 +51,7 @@ _isr%1:
 global _isr%1
 
 _isr%1:
+  xchg bx, bx
     pushfd
     pushad
     call fin_intr_pic1
@@ -101,6 +102,7 @@ _isr32:
   call sched_proximo_indice
   cmp ax, 0
   je .nojump
+  xchg bx, bx
 
   mov [sched_tarea_selector], ax
 
@@ -118,6 +120,11 @@ _isr32:
 
 ISR2 33
 
+
+global _isr102:
+_isr102:
+  jmp $
+  iret
 
 ;;
 ;; Rutina de atención del RELOJ

@@ -26,12 +26,14 @@ void mmu_mappear_pagina(unsigned int virtual, unsigned int dir_pd, unsigned int 
     // Asumo que la memoria viene en 0s
     dir[DIR_IDX(virtual)].addr = mmu_dameMem() >> 12;
     dir[DIR_IDX(virtual)].present = 1;
+    dir[DIR_IDX(virtual)].write = 1;
     dir[DIR_IDX(virtual)].supervisor = permisos;
   }
 
   pag_entry* tbl = (pag_entry*) (dir[DIR_IDX(virtual)].addr << 12);
 
   tbl[TBL_IDX(virtual)].present = 1;
+  tbl[TBL_IDX(virtual)].write = 1;
   tbl[TBL_IDX(virtual)].supervisor = permisos;
   tbl[TBL_IDX(virtual)].addr = fisica >> 12;
 
@@ -53,7 +55,7 @@ unsigned int mmu_inicializar_dir_zombi(unsigned int jug, unsigned int z){
 
   int i;
   for (i = 0; i < PAG_COUNT; i++){
-    mmu_mappear_pagina(i * PAG_SIZE, dir, i * PAG_SIZE, 1);
+    mmu_mappear_pagina(i * PAG_SIZE, dir, i * PAG_SIZE, 0);
   }
 
   int cambioCol []={0, 1, 1, 1, 0, 0, -1, -1 ,-1};
@@ -63,16 +65,19 @@ unsigned int mmu_inicializar_dir_zombi(unsigned int jug, unsigned int z){
   for (i = 0; i < 9; i++){
     mmu_mappear_pagina(0x08000000 + 0x1000 * i, dir,
           pos2mem((int) (JUGADOR[jug].col + 2 - 4 * jug) + cambioCol[i],
-                 ((int) JUGADOR[jug].fila + cambioFil[i] + 44) % 44), 0 );
+                 ((int) JUGADOR[jug].fila + cambioFil[i] + 44) % 44), 1 );
   }
 
-  mmu_mappear_pagina(0x08000000, PAG_DIR, pos2mem(JUGADOR[jug].col + 2 - 4 * jug, JUGADOR[jug].fila), 1);
+  mmu_mappear_pagina(0x08000000, PAG_DIR, pos2mem(JUGADOR[jug].col + 2 - 4 * jug, JUGADOR[jug].fila), 0);
 
   char* toCopy = (char*) 0x08000000;
   char* from;
-  
-  if (JUGADOR[jug].zombis[z].cl){
-    from = (char*) ((unsigned int)JUGADOR[jug].zombis[z].cl + 0x3000 * jug);
+
+
+  //Solo para probar, siempre cargo la misma parte
+
+  if (1){
+    from = (char*) (0x10000);
   }else{
     from = (char*) 0x16000;
   }

@@ -10,7 +10,7 @@
 #define PAG_ENTRY_MACRO(pag, index, add)                  \
     pag[index].present=(unsigned char) 1;                 \
     pag[index].write=(unsigned char) 1;                   \
-    pag[index].supervisor=(unsigned char) 1;              \
+    pag[index].supervisor=(unsigned char) 0;              \
     pag[index].wthrough=(unsigned char) 0;                \
     pag[index].cache_disabled=(unsigned char) 0;          \
     pag[index].accesed=(unsigned char) 0;                 \

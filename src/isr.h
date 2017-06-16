@@ -33,6 +33,7 @@ void _isr19();
 
 void _isr32(); //Clock
 void _isr33(); //Teclado
+void _isr102(); //Syscall
 
 extern void isr0();
 extern void isr33();

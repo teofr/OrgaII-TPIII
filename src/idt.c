@@ -67,4 +67,8 @@ void idt_inicializar() {
 
     IDT_ENTRY(32); //Clock
     IDT_ENTRY(33); //Teclado
+
+    IDT_ENTRY(102); //Syscall
+    idt[102].attr = 0xEE00;
+    idt[102].segsel = GDT_OFF_CS_K_DESC;
 }
