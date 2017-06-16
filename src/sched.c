@@ -7,16 +7,16 @@
 
 /*
 Si un jugador no tiene tareas, corre idle o pasa al otro jug
-
+Dato de color: podes llegar a perder el turno si agregas un zombi despues de que el scheduler recorrio mi lista de zombies.
 
 
 */
+
 #include "sched.h"
-#include "tss.h"
 
 typedef struct node_t{
   unsigned char avl;
-  unsigned short offset;
+  unsigned short offset; //selector GDT
 } node;
 
 typedef struct cola_t {
@@ -42,22 +42,62 @@ unsigned int nextAVL (unsigned int j){
   return curr;
 }
 
-void avanzar(unsigned char repeat){
+unsigned char avanzar(unsigned char repeat){
   this.curr=(this.curr+1)%2;
   unsigned int size=0;
   unsigned int curr=this.curr;
   unsigned int next=(this.colas[curr].next+1)%CANT_ZOMBIS;
+
   while (size<=CANT_ZOMBIS && this.colas[curr].queue[next].avl){
     next=(next+1)%CANT_ZOMBIS;
     size++;
   }
   if(size==CANT_ZOMBIS+1 && repeat){
-    avanzar(0);
+    return avanzar(0);
+  }else if(size==CANT_ZOMBIS+1){
+    return 0;
   }
+
   this.colas[curr].next=next;
+  return 1;
 }
 
 unsigned short sched_proximo_indice() {
-  avanzar(1);
-  return this.colas[this.curr].queue[this.colas[this.curr].next].offset;
+  if (avanzar(1)){
+    print_int(this.colas[this.curr].queue[this.colas[this.curr].next].offset, 20, 20, C_BG_BLACK | C_FG_WHITE);
+    return this.colas[this.curr].queue[this.colas[this.curr].next].offset;
+  }else{
+    return 0;
+  }
+}
+
+void sched_init(){
+  this.curr=0;
+
+  int jug;
+  for(jug=0; jug<2; jug++){
+    this.colas[jug].next=CANT_ZOMBIS;
+    int i;
+
+    for(i=0; i<CANT_ZOMBIS; i++){
+      unsigned int gdt_idx=GDT_IDX_TSS_ZOMBIS+jug*CANT_ZOMBIS+i;
+
+      this.colas[jug].queue[i].offset=gdt_idx<<3;
+      this.colas[jug].queue[i].avl=1;
+
+      init_tss_desc(gdt_idx, (unsigned int) &(tss_zombis[jug][i]), (unsigned int) sizeof(tss_zombis[jug][i]), 3);
+
+    }
+  }
+}
+
+unsigned int sched_insert_task(unsigned int jug){
+  unsigned int where=nextAVL(jug);
+
+  if (where<CANT_ZOMBIS){
+    tss_new_task(jug, where);
+
+    this.colas[jug].queue[where].avl=0;
+  }
+  return where;
 }

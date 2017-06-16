@@ -21,6 +21,7 @@ extern mmu_inicializar
 extern mmu_inicializar_dir_zombi
 extern game_init
 extern tss_inicializar
+extern sched_init
 
 ;;PIC
 extern resetear_pic
@@ -135,12 +136,13 @@ BITS 32
     call game_init
 
     call tss_inicializar
+    call sched_init
+
     mov ax, GDT_OFF_INICIAL_DESC
     ltr ax
     jmp GDT_OFF_IDLE_DESC:0
     ; Habilitar interrupciones
     sti
-
 
 
 

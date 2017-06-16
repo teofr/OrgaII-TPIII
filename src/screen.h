@@ -12,6 +12,12 @@
 #define VIDEO_FILS 50
 #define VIDEO_COLS 80
 
+#define SCORE_RESTANTES_FIL   47
+#define SCORE_A_COL           (39 + 33) / 2
+#define SCORE_B_COL           (44 + 38) / 2
+#define RESTANTES_A_COL       30
+#define RESTANTES_B_COL       48
+
 #include "colors.h"
 #include "defines.h"
 

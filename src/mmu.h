@@ -10,7 +10,7 @@
 
 #include "defines.h"
 #include "i386.h"
-#include "tss.h"
+//#include "tss.h"
 #include "game.h"
 #include "paginacion.h"
 

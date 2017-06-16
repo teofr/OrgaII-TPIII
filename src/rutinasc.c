@@ -4,15 +4,6 @@ void isr0(){
   print_gif_seg_fault();
 }
 
-void isr32(){
-  state++;
-  state=state%diffStates;
-  ca temp;
-  temp.c=states[state];
-  temp.a=C_BG_BLACK | C_FG_WHITE;
-  print_ca(temp, 79, 49);
-}
-
 void isr33(){
   char c = 0;
   c = inb(0x60);

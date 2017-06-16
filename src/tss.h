@@ -55,9 +55,13 @@ typedef struct str_tss {
 } __attribute__((__packed__, aligned (8))) tss;
 
 void tss_inicializar();
+void tss_new_task(unsigned int jug, unsigned int libre);
+void tss_clean_zombie(unsigned int jug, unsigned int libre);
 
 extern tss tss_inicial;
 extern tss tss_idle;
+extern tss tss_zombis[][CANT_ZOMBIS];
+
 
 
 #endif  /* !__TSS_H__ */

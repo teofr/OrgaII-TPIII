@@ -11,6 +11,8 @@
 #include "screen.h"
 #include "mmu.h"
 #include "rutinasc.h"
+#include "sched.h"
+#include "i386.h"
 
 // Si le dejo esto desde mmu no puedo agarrar las declaraciones de aca
 
@@ -24,11 +26,15 @@ typedef struct action_t{
 }__attribute__((__packed__, aligned (8))) action;
 
 ///ZOMBIES
-typedef enum clase_e { GUERRERO=0x10000, MAGO=0x11000, CLERIGO=0x12000, IDLE=0} clase;
+//TODO: ver de cambiar esta abominacion
+typedef enum clase_e { GUERRERO = 0x10000, MAGO = 0x11000, CLERIGO = 0x12000, IDLE = 0} clase;
 
-typedef struct zombie_s{
-  //unsigned int cr3;
-  clase cl;
+typedef enum claseLinda_e { GUERRERO_L, MAGO_L, CLERIGO_L, CLASE_SIZE} claseLinda;
+
+#define DIFFZOMBIES (unsigned int ) CLASE_SIZE;
+
+typedef struct zombie_s {
+  claseLinda cl;
   unsigned int fila;
   unsigned int col;
 }__attribute__((__packed__, aligned (8))) zombie;
@@ -36,14 +42,14 @@ typedef struct zombie_s{
 zombie crearZombie(clase tipo);
 
 char* tiposZombie;
-#define DIFFZOMBIES 3;
 
 ///JUGADORES
 typedef struct jug_t {
   unsigned int fila;
   unsigned int col;
-  unsigned int currZ;
-  //ca attr;
+  claseLinda currZ;
+  unsigned int puntos;
+  unsigned int zRestantes;
   zombie zombis[8];
 }__attribute__((__packed__, aligned (8))) jug;
 
@@ -55,12 +61,12 @@ jug JUGADOR[2];
 #define KEY_A 0x1E
 #define KEY_S 0x1F
 #define KEY_D 0x20
-#define KEY_LS 0x2B
+#define KEY_LS 0x2A
 #define KEY_I 0x17
 #define KEY_J 0x24
 #define KEY_K 0x25
 #define KEY_L 0x26
-#define KEY_RS 0x37
+#define KEY_RS 0x36
 
 ///CLOCK
 
@@ -68,7 +74,11 @@ void game_keyboard_parser(char key);
 
 void game_keyboard_handler(action a);
 
+void game_sumar_punto (unsigned int j);
+
 void game_init();
+
+void avanzar_reloj();
 
 void game_jugador_mover(unsigned int jugador,  int value);
 
@@ -78,11 +88,15 @@ void game_shift_zombie(unsigned int jugador, int a);
 
 void game_move_current_zombi(direccion dir);
 
+void game_move_zombie(unsigned int jug, unsigned int z, unsigned int col, unsigned int fila);
+
 unsigned int pos2mem(unsigned int x, unsigned int y);
 
 void mem2pos(unsigned int mem, unsigned int *x, unsigned int *y);
 
 void print_jug(unsigned int j);
+
+void upd_jugs();
 
 
 #endif  /* !__GAME_H__ */

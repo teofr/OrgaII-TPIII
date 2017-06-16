@@ -8,9 +8,11 @@
 #ifndef __SCHED_H__
 #define __SCHED_H__
 
-#include "screen.h"
 #include "tss.h"
+//#include "screen.h"
 
+
+unsigned int sched_insert_task(unsigned int jug);
 unsigned short sched_proximo_indice();
 
 

@@ -12,7 +12,6 @@ char* states;
 unsigned int state;
 
 void isr0();
-void isr32();
 void isr33();
 void isr();
 

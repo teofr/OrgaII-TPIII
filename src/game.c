@@ -7,6 +7,7 @@
 #include "game.h"
 
 
+
 void game_keyboard_parser(char key){
   action temp;
 
@@ -83,12 +84,22 @@ void game_jugador_mover(unsigned int jugador, int value) {
 }
 
 void game_lanzar_zombi(unsigned int jugador) {
-  //inicializar TSS
+  if (!JUGADOR[jugador].zRestantes) return;
+  breakpoint();
+  unsigned int where = sched_insert_task(jugador);
 
-  //
-
+  if (where<CANT_ZOMBIS){
+    JUGADOR[jugador].zRestantes--;
+    JUGADOR[jugador].zombis[where].cl=JUGADOR[jugador].currZ;
+    JUGADOR[jugador].zombis[where].fila=JUGADOR[jugador].fila;
+    unsigned int col = jugador ? VIDEO_COLS-3 : 2;
+    JUGADOR[jugador].zombis[where].col = col;
+    game_move_zombie(jugador, where, col, JUGADOR[jugador].fila);
+  }
 
 }
+
+
 
 void game_shift_zombie(unsigned int jugador, int a){
   int prev=(int)JUGADOR[jugador].currZ;
@@ -97,7 +108,25 @@ void game_shift_zombie(unsigned int jugador, int a){
   print_jug(jugador);
 }
 
+void game_move_zombie(unsigned int jug, unsigned int z, unsigned int col, unsigned int fila){
+  ca temp;
+  temp.c='X';
+  temp.a= C_BG_GREEN | C_FG_WHITE;
+  print_ca(temp, JUGADOR[jug].zombis[z].col, JUGADOR[jug].zombis[z].fila);
+  JUGADOR[jug].zombis[z].col=col;
+  JUGADOR[jug].zombis[z].fila=fila;
+  temp.c = tiposZombie[JUGADOR[jug].zombis[z].cl];
+  temp.a = C_FG_WHITE | (jug ? C_BG_RED : C_BG_BLUE);
+  print_ca(temp, col, fila);
+
+  upd_jugs();
+}
+
 void game_move_current_zombi(direccion dir) {
+}
+
+void game_sumar_punto (unsigned int j){
+
 }
 
 void game_init(){
@@ -107,16 +136,20 @@ void game_init(){
   states="|/-\\";
 
   //ARRAY TIPOS DE ZOMBIE
-  tiposZombie = "MGC";
+  tiposZombie = "GMC";
 
   ///JUGADORES
   JUGADOR[0].fila = 43;
   JUGADOR[0].col = 0;
   JUGADOR[0].currZ = 0;
+  JUGADOR[0].zRestantes=20;
+  JUGADOR[0].puntos=0;
 
   JUGADOR[1].fila = 0;
   JUGADOR[1].col = 79;
   JUGADOR[1].currZ = 0;
+  JUGADOR[1].zRestantes=20;
+  JUGADOR[1].puntos=0;
 
   int i;
   for(i=0; i<8; i++){
@@ -127,8 +160,18 @@ void game_init(){
   print_jug(0);
   print_jug(1);
 
+  upd_jugs();
+
 }
 
+void avanzar_reloj(){
+  state++;
+  state=state%diffStates;
+  ca temp;
+  temp.c=states[state];
+  temp.a=C_BG_BLACK | C_FG_WHITE;
+  print_ca(temp, 79, 49);
+}
 
 zombie crearZombie(clase tipo){
   zombie z;
@@ -153,6 +196,17 @@ void print_jug(unsigned int j){
   temp.c = 0x20;
   print_ca(temp, curr.col, ((curr.fila + 1) % 44) +1);
   print_ca(temp, curr.col, ((curr.fila +43) % 44) +1 );
+}
+
+void upd_jugs(){
+  print_int(JUGADOR[0].puntos, SCORE_A_COL, SCORE_RESTANTES_FIL, C_BG_RED | C_FG_WHITE);
+  print_int(JUGADOR[1].puntos, SCORE_B_COL, SCORE_RESTANTES_FIL, C_BG_BLUE | C_FG_WHITE);
+
+  //Printea cantidad de zombies disponibles de cada jugador
+  print_int(JUGADOR[0].zRestantes, RESTANTES_A_COL, SCORE_RESTANTES_FIL, C_BG_RED | C_FG_WHITE);
+  print_int(JUGADOR[1].zRestantes, RESTANTES_B_COL, SCORE_RESTANTES_FIL, C_BG_BLUE | C_FG_WHITE);
+
+
 }
 
 

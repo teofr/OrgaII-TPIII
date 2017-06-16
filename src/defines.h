@@ -37,6 +37,7 @@
 //TSSs
 #define GDT_IDX_TSS_INICIAL         13
 #define GDT_IDX_TSS_IDLE            14
+#define GDT_IDX_TSS_ZOMBIS          15
 
 /* Offsets en la gdt */
 /* -------------------------------------------------------------------------- */
@@ -46,8 +47,9 @@
 #define GDT_OFF_CS_U_DESC           (GDT_IDX_CS_U_DESC      << 3 | 3) // el | 3 es para setear el bit de privilegios
 #define GDT_OFF_DS_U_DESC           (GDT_IDX_DS_U_DESC      << 3 | 3)
 #define GDT_OFF_VIDEO_DESC          (GDT_IDX_VIDEO_DESC     << 3)
-#define GDT_OFF_INICIAL_DESC        (GDT_IDX_INICIAL_DESC   << 3)
-#define GDT_OFF_IDLE_DESC           (GDT_IDX_IDLE_DESC      << 3)
+#define GDT_OFF_INICIAL_DESC        (GDT_IDX_TSS_INICIAL    << 3)
+#define GDT_OFF_IDLE_DESC           (GDT_IDX_TSS_IDLE       << 3)
+#define GDT_OFF_ZOMBIS_DESC         (GDT_IDX_TSS_ZOMBIS     << 3) //Esta  bien esto, o debería tener dpl 3
 
 /* Direcciones de memoria */
 /* -------------------------------------------------------------------------- */

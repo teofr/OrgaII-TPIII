@@ -111,14 +111,7 @@ void imprimir_info(){
     p[0][i].c = 0x20;
     p[0][i].a = C_BG_BLACK;
   }
-  //Printea score de cada jugador
-  print_int(0, (39 + 33) / 2, 47, C_BG_RED | C_FG_WHITE);
-  print_int(0, (44 + 38) / 2, 47, C_BG_BLUE | C_FG_WHITE);
-
-  //Printea cantidad de zombies disponibles de cada jugador
-  print_int(8, 30, 47, C_BG_RED | C_FG_WHITE);
-  print_int(8, 47, 47, C_BG_BLUE | C_FG_WHITE);
-
+  
   //Printea info de zombis de cada jugador
   for(i = 1; i < 9; i++){
     print_int(i,  4 + i*2, 46, C_BG_BLACK | C_FG_WHITE);//Printea numeros de jug rojo

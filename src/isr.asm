@@ -23,8 +23,8 @@ extern sched_proximo_indice
 ;;Rutinas de interrupcion (rutinasc.h)
 extern isr
 extern isr0
-extern isr32
 extern isr33
+extern avanzar_reloj
 
 ;;
 ;; Definición de MACROS
@@ -92,7 +92,30 @@ ISR 17
 ISR 18
 ISR 19
 
-ISR2 32
+global _isr32
+_isr32:
+
+  pushad
+  call avanzar_reloj
+
+  call sched_proximo_indice
+  cmp ax, 0
+  je .nojump
+
+  mov [sched_tarea_selector], ax
+
+  call fin_intr_pic1
+  xchg bx, bx
+  jmp far [sched_tarea_offset]
+  jmp .end
+
+  .nojump:
+    call fin_intr_pic1
+
+  .end:
+  popad
+  iret
+
 ISR2 33
 
 

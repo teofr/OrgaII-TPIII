@@ -7,10 +7,12 @@
 #include "colors.h"
 #include "defines.h"
 #include "game.h"
-#include "syscall.h" 
+#include "syscall.h"
+
 
 void task() {
     /* Tarea */
+    breakpoint();
     int i;
     for(i=0;i<10;i++)
     syscall_mover(ADE);
@@ -22,6 +24,6 @@ void task() {
     syscall_mover(IZQ);
     for(i=0;i<500;i++)
     syscall_mover(ATR);
-    
+
   while(1) { __asm __volatile("mov $2, %%eax":::"eax"); }
 }
